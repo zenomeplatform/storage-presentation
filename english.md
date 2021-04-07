@@ -258,16 +258,16 @@ erDiagram
 
 > Другой пример метаданных, это дата и место взятия образца для секвенирования, используемый прибор и так далее. Если появится подозрение, что какой-то прибор выдает некорректные данные, можно будет просмотреть весь список образцов, сделанных на нем в определенный период, изучить их и принять необходимые меры.
 
-### Использование Zenome Storage System для частичного раскрытия данных
+### Making use of Zenome Storage System for controlled disclosure of genetic data
 
-Zenome Storage System позволяет владельцам генетических данных (в первую очередь это сами пациенты) регистрироваться в системе и раскрывать их лишь частично. _Данная возможность требует специальной настройки. Далее приведены возможные сценарии использования._
+Zenome Storage System enables the data owners (mostly patients) to sign up and only partially disclosure their genetic data. _This requires special configuration. The following are some possible use cases._
 
-> Например, для создания генетического отчета, требуется определенное подмножество генетических данных. Пользователь вместо того, чтобы передавать весь файл, используя специальный клиент Zenome Storage System (который может быть брендирован как клиент фирмы-поставщика отчетов), регистрирует этот файл в системе (без загрузки). После этого, выбрав желаемый отчет, система отправляет ему запрос на чтение определенного списка позиций из этого файла. В случае, если он соглашается, только указанные данные извлекаются из файла и отправляются в систему.
+> Genetic reports require some subset of the user's genetic data. So instead of uploading the whole data to the service provider, the user makes use of a special Zenome Storage System client. This piece of software may even be branded in the style of the service provider. Namely, the user registers the data in the system without even uploading it. After the user has chosen the desired report, the system asks him to allow access to the needed set of alleles. If the user agrees, this information is extracted from data and sent to the service provider. The user then gets its report based on the information provided.
 
-> Владелец геномных данных может пожелать принять участие в генетических исследованиях. Он также регистрирует файл с данными через специальную программу-клиент, подготовленную исследовательской группой, и опционально заполняет предлагаемые формы анкет. После этого исследователи могут сформировать запрос, который будет исполняться на компьютере владельца данных. Затем результаты вычислений отправляются исследовательской группы. (Объем передаваемых данных устанавливается владельцем при регистрации файла в системе)
+> The data owner wants to take part in genetic research by providing access to the subset of its data. The user makes use of a special Zenome Storage System client (preconfigured by a research group) and registers his data in it. Optionally, the user completes a questionnaire. After that, the researchers are enabled to make a query that executes on the data owner's computer. Only the results of the computation are sent back to the research team. The user specifies a degree to which data are used when data is registered in the system.
 
-### Практически неограниченные возможности по кастомизации
+### Virtually unlimited capabilities for customization
 
-Zenome Storage System позволяет гибко настраивать политики для подключения новых узлов в сеть, давая возможность создавать как централизованные системы, так и децентрализованные.
+Zenome Storage System enables a flexible connection security policy that governs how new nodes enter the network. Both centralized systems and decentralized ones can be built using Zenome Storage System, depending on the policy used.
 
-> Существует возможность использовать полностью децентрализованную сеть для резервного хранения данных. Узлы такой сети хранят предварительно зашифрованную информацию и не могут получить к ней доступ. В момент добавления узла в сеть или выхода из сети, система корректирует число реплик согласно указанным политикам. Например, узлами такой сети могут быть компьютеры, подключенные к интернет, владельцы которых желают получить вознаграждение за предоставление своих неиспользуемых ресурсов жесткого диска.
+> The fully decentralized network enables the following use case of implementing a backup strategy. The nodes of said network store encrypted pieces of data and as such gain no access to it. When nodes are entering the network or leaving it, the system adjusts the number of replicas accordingly. For instance, the nodes may be just computers on the Internet, whose owners seek reward for providing their unutilized disk capacity.
