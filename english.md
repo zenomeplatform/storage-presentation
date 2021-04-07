@@ -53,9 +53,9 @@ Working with genetic data includes operations with data of different types, whic
 
 ### Zenome Storage System
 
-Zenome Storage System представляет собой программно определеяемую систему хранения геномных данных. При разворачивании системы пользователь устанавливает управляющую программу на нескольких серверах, работающих под управлением Unix-совместимой операционной системы (рекомендуется использовать современные дистрибутивы Linux).
+Zenome Storage System is a software-defined storage system, specifically designed to work with genomic data. To deploy the system the user has to install a control plane on several servers (or nodes), running Unix-compatible OS (using modern Linux distributions is highly encouraged).
 
-Затем с помощью специального скрипта формируется начальная конфигурация системы, в том числе и настраивается способ авторизации для администратора, число узлов, их сетевые адреса или имена. Система сгенерирует для каждого узла конфигурационный файл, а также приватный ключ для администратирования. Конфигурационные файлы применяются на соответствующих узлах при запуске управляющей программы, после чего (если есть сетевая доступность) сервера обнаруживают друг друга и формируют единый кластер.
+Then the user specifies a configuration using the smart configurator, a special piece of software to assist in creating a set of configuration files. The user is asked to configure administrative accounts, nodes, networking, etc. As a result, the user is given a set of configuration files (for each node) and a file containing administrative credentials for the system. After that, a set of nodes becomes a cluster.
 
 После этого пользователь на каждом узле настраивает хранилище данных, указывая как и где узел может разместить данные. Каждый способ хранения представляет собой независимый модуль, который берет на себя реализацию взаимодействия с соответствующим бэкэндом. Поддержка локального хранения на сервере, а также популярных сетевых протоколов (FTP, SMB, iscsi и так далее) реализована в стандартных модулях, доступных по умолчанию. Кроме того существуют модули-адаптеры для интеграции популярных облачных сервисов как мест хранения данных.
 
