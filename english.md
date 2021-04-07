@@ -69,124 +69,7 @@ Zenome Storage System проводит черту между данными, о�
 
 Допустим имеется большое число образцов, которые нужно проанализировать по определенным базам вариантов, например ClinVar. Со временем выходят новые версии для базы аннотаций и чтобы всегда иметь свежие данные по образцам, раньше приходилось каждый раз перезапускать аннотирование каждого образца, а затем сравнивать с прошлой версией на предмет новых существенных данных. Zenome Storage System, работая данными именно как с генетическими данными, позволяет при обновлении базы аннотаций показать, для каких образцов это обновление будет существенно менять результат аннотаций.
 
-```latex {cmd=true,hide=true}
-\documentclass[tikz]{standalone}
-\usepackage{lmodern}
-\usetikzlibrary{shadows,chains,scopes,calc}
-\usetikzlibrary{decorations.pathmorphing, shapes}
-
-\begin{document}
-\begin{tikzpicture}
-    [
-        start chain=going right,
-        node distance=10mm,
-        database/.style={
-            thick,
-            draw=black,
-            top color=white,
-            bottom color=black!10,
-            font=\sffamily\small,
-            minimum width=20mm,
-            minimum height=15mm,
-            drop shadow
-        },
-        userfile/.style={
-            thick,
-            draw=black,
-            top color=green!20,
-            bottom color=green!10,
-            font=\sffamily,
-            minimum width=10mm,
-            minimum height=10mm
-        },
-        virtfile/.style={
-            thick,
-            draw=blue,
-            top color=gray!10,
-            bottom color=gray!10,
-            font=\sffamily,
-            minimum width=10mm,
-            minimum height=10mm
-        },
-        deltadb/.style={
-            thick,
-            draw=black,
-            top color=black!20,
-            bottom color=black!10,
-            font=\sffamily,
-            minimum width=2mm,
-            minimum height=15mm
-        },
-        every label/.style={
-            font=\sffamily
-        },
-    ]
-    \node[userfile, label={above:User's VCF}] at (-3,-6) (Variants) {};
-
-
-    \node[on chain, database, label={above:ClinVar 2019-12}] (CV1) {};
-    \node[on chain, database, label={above:ClinVar 2020-01}] (CV2) {};
-    \node[on chain, database, label={above:ClinVar 2020-02}] (CV3) {};
-    \node[on chain, database, label={above:ClinVar 2020-03}] (CV4) {};
-    \node[on chain, database, label={above:ClinVar 2020-04}] (CV5) {};
-
-    \node[deltadb, label={below:Delta}] at ($0.5*(CV1) + 0.5*(CV2) + (0,-2.5)$) (DCV1) {};
-    \draw[thick,black] ($(CV1.south) + (+0.2, -0.1)$)
-                    |- ($(DCV1.north)+ (+0, 0.5)$)
-                    -| ($(CV2.south) + (-0.2, -0.1)$)
-                       ($(DCV1.north)+ (+0, 0.5)$) -- (DCV1.north) ;
-
-
-    \node[deltadb, label={below:Delta}] at ($0.5*(CV2) + 0.5*(CV3) + (0,-2.5)$) (DCV2) {};
-    \draw[thick,black] ($(CV2.south) + (+0.2, -0.1)$)
-                    |- ($(DCV2.north)+ (+0, 0.5)$)
-                    -| ($(CV3.south) + (-0.2, -0.1)$)
-                       ($(DCV2.north)+ (+0, 0.5)$) -- (DCV2.north) ;
-
-
-    \node[deltadb, label={below:Delta}] at ($0.5*(CV3) + 0.5*(CV4) + (0,-2.5)$) (DCV3) {};
-    \draw[thick,black] ($(CV3.south) + (+0.2, -0.1)$)
-                    |- ($(DCV3.north)+ (+0, 0.5)$)
-                    -| ($(CV4.south) + (-0.2, -0.1)$)
-                       ($(DCV3.north)+ (+0, 0.5)$) -- (DCV3.north) ;
-
-
-    \node[deltadb, label={below:Delta}] at ($0.5*(CV4) + 0.5*(CV5) + (0,-2.5)$) (DCV4) {};
-    \draw[thick,black] ($(CV4.south) + (+0.2, -0.1)$)
-                    |- ($(DCV4.north)+ (+0, 0.5)$)
-                    -| ($(CV5.south) + (-0.2, -0.1)$)
-                       ($(DCV4.north)+ (+0, 0.5)$) -- (DCV4.north) ;
-
-
-    \node[virtfile, label={above:Annotated with}, label={below:ClinVar 2019-12}] at ($(CV1) + (0, -6)$) (UCV1) {};
-    \node[virtfile, label={above:Annotated with}, label={below:ClinVar 2020-01}] at ($(CV2) + (0, -6)$) (UCV2) {};
-    \node[virtfile, label={above:Annotated with}, label={below:ClinVar 2020-02}] at ($(CV3) + (0, -6)$) (UCV3) {};
-    \node[virtfile, label={above:Annotated with}, label={below:ClinVar 2020-03}] at ($(CV4) + (0, -6)$) (UCV4) {};
-    \node[virtfile, label={above:Annotated with}, label={below:ClinVar 2020-04}] at ($(CV5) + (0, -6)$) (UCV5) {};
-
-    \draw[black,->] (CV1) + (-5,0) -> (CV1);
-    \draw[black,->] (CV1) -> (CV2);
-    \draw[black,->] (CV2) -> (CV3);
-    \draw[black,->] (CV3) -> (CV4);
-    \draw[black,->] (CV4) -> (CV5);
-    \draw[black,->] (CV5) -> +(5,0);
-
-    \draw[blue,->] (Variants) -> (UCV1);
-    \draw[blue,->] (UCV1) -> (UCV2);
-    \draw[blue,->] (UCV2) -> (UCV3);
-    \draw[blue,->] (UCV3) -> (UCV4);
-    \draw[blue,->] (UCV4) -> (UCV5);
-
-    \draw[black, very thick,->, ] (CV1) -> ($(UCV1) + (0,1)$) node[midway,fill=white] {Annotate};
-    \draw[black!60, very thick,->, ] (DCV1) +(0,-1.25) |- +(1,-3.4) node[midway,below=0.15,fill=white] {Update};
-    \draw[black!60, very thick,->, ] (DCV2) +(0,-1.25) |- +(1,-3.4) node[midway,below=0.15,fill=white] {};
-    \draw[black!60, very thick,->, ] (DCV3) +(0,-1.25) |- +(1,-3.4) node[midway,below=0.15,fill=white] {};
-    \draw[black!60, very thick,->, ] (DCV4) +(0,-1.25) |- +(1,-3.4) node[midway,below=0.15,fill=white] {};
-
-
-\end{tikzpicture}
-\end{document}
-```
+@import "figures/figure-virtual-annotations.md"
 
 > Например, в 2020 году в ClinVar был добавлен вариант `NM_003000.3(SDHB):c.332T>C (p.Leu111Pro)`, классифицируемый как `Likely pathogenic​`. Zenome Storage System в этом случае для всех образцов, в которых такой вариант присутствует, обновила бы виртуальный файл аннотации, а также бы уведомила пользователя о существенном обновлении аннотаций. Соотвтетсвующая запись появится на странице образца в приложении-клиенте или в выдаче консольного клиента, а также на странице информации о базе аннотации появится запись, о том для скольки образцов изменились аннотации. Пользователь может настроить дополнительные средства уведомления при желании (например, уведомить лечащего врача).
 
@@ -200,30 +83,7 @@ Efficient accessing huge genetic databases is of particular interest. Zenome Sto
 
 > For instance, Ensembl Variant Effect Predictor requires cache and resource files to do its work. The specific amount of data needed varies depending on the actual case and easily could be as high as a couple of terabytes (gnomAD v2.1.1 uses about 500 GB of disk space, while gnomAD v3.1.1 uses terabytes). Zenome Storage System enables using VEP with that databases without paying the costs of having them locally. While the data is only available when connected to the network, a temporary disconnect would not crash a running analysis. The analysis is simply paused until the connection is restored, and then continues as if there hasn't been any disconnect at all.
 
-```mermaid
-sequenceDiagram
-    participant V as VEP
-    participant C as Client
-    participant S as Node
-
-    V->>+C: READ /homo_sapiens/... bytes 0-1023
-    C->>+S: GET /homo_sapiens/... bytes 0-1023
-    S->>-C: DATA /homo_sapiens/... bytes 0-1023
-    C->>-V: DATA /homo_sapiens/... bytes 0-1023
-
-    V->>+C: READ /homo_sapiens/... bytes 1024-2047
-    C->>+S: GET /homo_sapiens/... bytes 1024-2047
-
-    Note over C,S: Connection Broken
-    loop Repeating
-        C-->S: Try to reconnect
-    end
-    Note over C,S: Connection Restored
-    C->>S: GET /homo_sapiens/... bytes 1024-2047
-
-    S->>-C: DATA /homo_sapiens/... bytes 1024-2047
-    C->>-V: DATA /homo_sapiens/... bytes 1024-2047
-```
+@import "figures/figure-vep-over-net.md"
 
 ### Managing information using metadata in Zenome Storage System
 
@@ -231,27 +91,7 @@ When new data is being added to the Zenome Storage System, the user is asked to 
 
 > For example, all files and virtual files that refer to the same patient are grouped. So on every entity's page there is a list of related entities, referring to the same person.
 
-```mermaid
-erDiagram
-    REPORT {
-        string id
-        data   content
-    }
-
-    SAMPLE {
-        string      sampleId
-        timestamp   collectedAt
-    }
-
-    PERSON {
-        string firstName
-        string lastName
-    }
-
-    PERSON  ||--o{ SAMPLE : owns
-    REPORT  ||--o{ SAMPLE : depends
-    PERSON  ||--o{ REPORT : ordered
-```
+@import "figures/figure-metadata.md"
 
 > Metadata also includes information like the date or place of taking a DNA sample, the sequencer used, and so on. If there is a suspicion that the device is malfunctioning, producing incorrect genetic data, it's possible to quickly list all affected entities in the system and take the necessary actions.
 
