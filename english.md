@@ -1,6 +1,6 @@
 ## Zenome Storage System
 
-**High-performance storage system for genomic data**
+### High-performance storage system for genomic data
 
 * Works in both distributed systems and private networks
 * Takes into account the specificity of big genomic data during their storage and processing
@@ -17,7 +17,7 @@ For example, Zenome Storage System has the following features:
 * Support for standard containers for storing genetic data
 * Data normalization: consideration of vendor-specific features of format subspecies
 
-**Each data type needs a special approach**
+### Each data type needs a special approach
 
 Working with genetic data includes operations with data of different types, which leads to significantly different requirements for both hardware and software that deals with data of a certain type.
 
@@ -51,7 +51,7 @@ Working with genetic data includes operations with data of different types, whic
 
 
 
-**Zenome Storage System**
+### Zenome Storage System
 
 Zenome Storage System представляет собой программно определеяемую систему хранения геномных данных. При разворачивании системы пользователь устанавливает управляющую программу на нескольких серверах, работающих под управлением Unix-совместимой операционной системы (рекомендуется использовать современные дистрибутивы Linux).
 
