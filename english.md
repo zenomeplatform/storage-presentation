@@ -33,12 +33,12 @@ Working with genetic data includes operations with data of different types, whic
 
 2. Aligned sequence data (formats: SAM, BAM, CRAM)
 
-   * Производные данные.
-   * Значительный размер данных (дп 500Gb)
-   * Могут использоваться напрямую (напр, визуализации картирования на референс)
-   * Можно удалить и при необходимости восстановить позже.
+   * Derived from raw data
+   * Significant data size (up to 500Gb)
+   * Can be used directly (e.g. visualizations of aligned reads)
+   * Can be deleted and restored later if necessary
 
-    > **Приоритет в работе с этим типом данным в Zenome Storage System --- обеспечить их доступность при необходимости и минимизировать затраты на хранение.**
+    > **Priority in dealing with this type of data in Zenome Storage System --- is to make them available if needed and minimize storage costs.**
 
 3. Sequence variation data (formats: VCF, GVCF, TXT, etc)
 
