@@ -228,11 +228,11 @@ sequenceDiagram
     C->>-V: DATA /homo_sapiens/... bytes 1024-2047
 ```
 
-### Zenome Storage System для организации файлов при помощи метаданных
+### Managing information using metadata in Zenome Storage System
 
-Zenome Storage System при загрузке новых данных предлагает пользователю добавить метаданные к файлу, а также извлекает их из файла, если они уже там есть (например, в хедере VCF). Заполненные метаданные дают возможность использовать их в запросах, а также автоматически связывать несколько файлов по определенному признаку.
+When new data is being added to the Zenome Storage System, the user is asked to provide additional metadata. Some metadata gets extracted from the data itself (for instance, from VCF header). Having rich metadata enables an enhanced capabilities of query processing. Also the grouping of entites in the system is based on metadata too.
 
-> Например, все файлы и виртуальные файлы, которые относятся к конкретному человеку объединяются в одну группу. На странице любого файла этой группы в разделе метаданные имеется возможность просмотреть этот список.
+> For example, all files and virtual files that refer to the same patient are grouped. So on every entity's page there is a list of related entities, referring to the same person.
 
 ```mermaid
 erDiagram
@@ -256,7 +256,7 @@ erDiagram
     PERSON  ||--o{ REPORT : ordered
 ```
 
-> Другой пример метаданных, это дата и место взятия образца для секвенирования, используемый прибор и так далее. Если появится подозрение, что какой-то прибор выдает некорректные данные, можно будет просмотреть весь список образцов, сделанных на нем в определенный период, изучить их и принять необходимые меры.
+> Metadata also includes information like the date or place of taking a DNA sample, the sequencer used, and so on. If there is a suspicion that the device is malfunctioning, producing incorrect genetic data, it's possible to quickly list all affected entities in the system and take the necessary actions.
 
 ### Making use of Zenome Storage System for controlled disclosure of genetic data
 
