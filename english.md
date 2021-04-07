@@ -17,18 +17,18 @@ For example, Zenome Storage System has the following features:
 * Support for standard containers for storing genetic data
 * Data normalization: consideration of vendor-specific features of format subspecies
 
-**К каждому типу данных нужен особый подход**
+**Each data type needs a special approach**
 
-Работа с генетическими данными включает операции с данными разных типов, что приводит к существенно разным требованиям как к аппаратному, так и к программному обеспечению, которое имеет дело с данными определенного типа.
+Working with genetic data includes operations with data of different types, which leads to significantly different requirements for both hardware and software that deals with data of a certain type.
 
-1. Raw Sequence (fastq, uBAM): _данные от ДНК-секвенатора_
+1. Raw Sequence (fastq, uBAM): _data from DNA sequencing lab_
 
-   * Отправная точка для анализа и реанализа данных в будущем
-   * Значительный размер данных (дп 500Gb)
-   * Практически не используются напрямую
-   * Невозможно восстановить при потере
+   * Starting point for primary analysis and reanalysis of data in the future
+   * Significant data size (up to 500Gb)
+   * Practically not used directly
+   * Unable to recover when lost
 
-    > **Приоритет в работе с этим типом данным в Zenome Storage System --- обеспечить их сохранность.**  
+    > **The priority in working with this type of data in the Zenome Storage System  --- is to ensure their safety.**  
 
 
 2. Aligned sequence data (formats: SAM, BAM, CRAM)
