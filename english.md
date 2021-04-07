@@ -256,7 +256,7 @@ erDiagram
     PERSON  ||--o{ REPORT : ordered
 ```
 
-> Metadata also includes information like the date or place of taking a DNA sample, the sequencer used and so on. If there is a suspicion that the device is malfunctioning, producing incorrect genetic data, it's possible to quickly list all affected entities in the system and take the necessary actions.
+> Metadata also includes information like the date or place of taking a DNA sample, the sequencer used, and so on. If there is a suspicion that the device is malfunctioning, producing incorrect genetic data, it's possible to quickly list all affected entities in the system and take the necessary actions.
 
 ### Making use of Zenome Storage System for controlled disclosure of genetic data
 
