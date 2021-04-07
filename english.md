@@ -19,49 +19,47 @@ For example, Zenome Storage System has the following features:
 
 ### Each data type needs a special approach
 
-Working with genetic data includes operations with data of different types, which leads to significantly different requirements for both hardware and software that deals with data of a certain type.
+Working with genetic data includes operations with data of different types, which leads to significantly different requirements for both hardware and software that deal with data of a certain type.
 
 1. Raw Sequence (fastq, uBAM): _data from DNA sequencing lab_
 
-   * Starting point for primary analysis and reanalysis of data in the future
-   * Significant data size (up to 500Gb)
-   * Practically not used directly
-   * Unable to recover when lost
+    * Starting point for primary analysis and reanalysis of data in the future
+    * Significant data size (up to 500Gb)
+    * Practically not used directly
+    * Unable to recover when lost
 
     > **The priority in working with this type of data in the Zenome Storage System  --- is to ensure their safety.**  
 
 
 2. Aligned sequence data (formats: SAM, BAM, CRAM)
 
-   * Derived from raw data
-   * Significant data size (up to 500Gb)
-   * Can be used directly (e.g. visualizations of aligned reads)
-   * Can be deleted and restored later if necessary
+    * Derived from raw data
+    * Significant data size (up to 500Gb)
+    * Can be used directly (e.g. visualizations of aligned reads)
+    * Can be deleted and restored later if necessary
 
     > **Priority in dealing with this type of data in Zenome Storage System --- is to make them available if needed and minimize storage costs.**
 
 3. Sequence variation data (formats: VCF, GVCF, TXT, etc)
 
-    * Непосредственно характеризуют отличия в последовательности ДНК
-    * Умеренный размер данных. Удаление для освобождения места не имеет смысла.
-    * Используются для получения клинической интерпретации и еще много где.
-    * Зачастую в задачах требуется лишь небольшая определенная часть данных.
-    * Огромное количество несовместимых между собой разновидностей VCF.
-    * Распространенная практика внесения в VCF данных из баз аннотаций усложняет обработку
-
-
+    * Specifically contains the difference in the sequence from the reference
+    * The moderate size. No sense in pruning to obtain free space.
+    * Directly used to get clinical interpretation.
+    * Frequently, only a small subset of data is required.
+    * Many incompatible VCF flavors exist
+    * The (mis)feature of VCF to contain arbitrary annotations makes the processing complex
 
 ### Zenome Storage System
 
-Zenome Storage System представляет собой программно определеяемую систему хранения геномных данных. При разворачивании системы пользователь устанавливает управляющую программу на нескольких серверах, работающих под управлением Unix-совместимой операционной системы (рекомендуется использовать современные дистрибутивы Linux).
+Zenome Storage System is a software-defined storage system, specifically designed to work with genomic data. To deploy the system the user has to install a control plane on several servers (or nodes), running Unix-compatible OS (using modern Linux distributions is highly encouraged).
 
-Затем с помощью специального скрипта формируется начальная конфигурация системы, в том числе и настраивается способ авторизации для администратора, число узлов, их сетевые адреса или имена. Система сгенерирует для каждого узла конфигурационный файл, а также приватный ключ для администратирования. Конфигурационные файлы применяются на соответствующих узлах при запуске управляющей программы, после чего (если есть сетевая доступность) сервера обнаруживают друг друга и формируют единый кластер.
+Then the user specifies a configuration using the smart configurator, a special piece of software to assist in creating a set of configuration files. The user is asked to configure administrative accounts, nodes, networking, etc. As a result, the user is given a set of configuration files (for each node) and a file containing administrative credentials for the system. After that, a set of nodes becomes a cluster.
 
-После этого пользователь на каждом узле настраивает хранилище данных, указывая как и где узел может разместить данные. Каждый способ хранения представляет собой независимый модуль, который берет на себя реализацию взаимодействия с соответствующим бэкэндом. Поддержка локального хранения на сервере, а также популярных сетевых протоколов (FTP, SMB, iscsi и так далее) реализована в стандартных модулях, доступных по умолчанию. Кроме того существуют модули-адаптеры для интеграции популярных облачных сервисов как мест хранения данных.
+The next step is to declare data storage on each node. Namely, the user provides where the data can be stored and the driver to use. There are many different storage drivers. Each driver encapsulates all interactions with the storage backend, providing a common interface to the system. The simplest driver is **the local filesystem driver**. Also, there are network-based drivers (FTP, SMB, iscsi, etc) and modules implementing a cloud provider integration.
 
-После этого пользователю предлагается настроить политики хранения данных, настраивая либо с нуля (не рекомендуется для большинства пользователей), либо используя пресеты с популярными вариантами. Политики представляют собой декларативную конфигурацию для того, как будут распределяться данные в системе, какое должно использоваться число независимых дублирований данных, применяется ли шифрование, формируются группы для пользователей системы и настраиваются их права.
+After that goes the configuration of storage policies. While the policy file can be written from scratch, most users are recommended to start from one of the given presets. The storage policy is a declarative configuration of how data is stored in the system: number of replicas, the use of encryption, the rights that different groups of users have over the data, etc.
 
-Затем создается ряд пользователей, которые получают возможность работать с системой одним из доступных способов: консольный клиент (Win/Linux/Mac), оконное приложение (Win/Linux/Mac) или же через Web interface (Win/Linux/Mac/Android/iOS/...). В простейшем случае авторизация пользователей происходит по паролю: при регистрации администратор рассылает одноразовые пароли для доступа, которые пользователь меняет на свой при первом входе.
+Finally, the actual user accounts are created. These accounts are used in a console client of the network (Win/Linux/Mac), in a desktop client (Win/Linux/Mac), or using a web interface (Win/Linux/Mac/Android/iOS/...). In the simplest scenario, the users are created with temporary passwords, which users must change on the first login.
 
 ### The incremental annotating
 
