@@ -10,12 +10,12 @@
 Zenome Storage System is designed as a foundation for creating Genomics-IDE - an integrated environment for efficient work with genetic data.
 For example, Zenome Storage System has the following features:
 
-* Управление потоками геномных данных и их систематизация.
-* Прозрачное использование контейнеров для изоляций рабочих сред
-* Моментальное развертывание желаемой среды выполнения
-* Сиситема контроля доступа основанная на криптографических доказательствах (опц.)
-* Поддержка стандартных контейнеров для хранения генетических данных
-* Нормализация данных: учет vendor-specific особенностей подвидов форматов.
+* Genomic data flow management and systematization
+* Transparent use of containers for isolation of working environments
+* Instant deployment of the desired runtime environment
+* Access control system based on cryptographic evidence (optional)
+* Support for standard containers for storing genetic data
+* Data normalization: consideration of vendor-specific features of format subspecies
 
 **К каждому типу данных нужен особый подход**
 
