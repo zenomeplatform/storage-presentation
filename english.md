@@ -3,12 +3,11 @@
 ### High-performance storage system for genomic data
 
 * Works in both distributed systems and private networks
-* Takes into account the specificity of big genomic data during their storage and processing
-* Unlimited potential for customization through modularity
+* Takes into account the specificity of big genomic data for their efficient storage and processing
+* Modularity and unlimited capabilities for customization
 * The system components can be implemented in stages, as needed
 
-Zenome Storage System is designed as a foundation for creating Genomics-IDE - an integrated environment for efficient work with genetic data.
-For example, Zenome Storage System has the following features:
+We designed Zenome Storage System as the foundation for **Genomics IDE**. It's an integrated environment for working with genetic data efficiently. As such, Zenome Storage System has the following features:
 
 * Genomic data flow management and systematization
 * Transparent use of containers for isolation of working environments
@@ -17,7 +16,7 @@ For example, Zenome Storage System has the following features:
 * Support for standard containers for storing genetic data
 * Data normalization: consideration of vendor-specific features of format subspecies
 
-### Each data type needs a special approach
+### Each data type deserves a special handling
 
 Working with genetic data includes operations with data of different types, which leads to significantly different requirements for both hardware and software that deal with data of a certain type.
 
