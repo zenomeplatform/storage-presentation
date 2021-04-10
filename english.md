@@ -1,6 +1,6 @@
 ## Zenome Storage System
 
-@import "figures/figure-main3.md"
+@import "figures/figure-main3.html"
 
 ### High-performance storage system for genomic data
 

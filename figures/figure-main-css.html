@@ -39,15 +39,16 @@
         boxShadow: "5px -8px 4px 0 rgba(0,0,255,0.1), inset -5px 8px 4px 0 rgba(0,0,255,0.1)",
         background: "rgba(0,0,0,0)",
         borderRadius: "50%",
-        transform: `translate3d(10px, 10px, ${offset}px)`
+        transform: `translate3d(10px, 10px, ${offset}px)`,
+        "transform-style": "preserve-3d"
       },
     })
   }
 
   function ScopeIcon({ color, text, icon, size, fontSize }) {
     return h(Fragment, {},
-        h("div", {  style: { "text-align": "center", color, position: "absolute", inset: 20, fontSize: size }, children: icon }),
-        h("div", {  style: { "text-align": "center", color, position: "absolute", left: 20,  right: 20, top: 30 + size, fontSize: fontSize }, children: text }),
+        h("div", {  style: { "transform-style": "preserve-3d", "text-align": "center", color, position: "absolute", inset: 20, fontSize: size }, children: icon }),
+        h("div", {  style: { "transform-style": "preserve-3d", "text-align": "center", color, position: "absolute", left: 20,  right: 20, top: 30 + size, fontSize: fontSize }, children: text }),
     )
   }
 
@@ -64,7 +65,8 @@
         background: "rgba(240,240,255, 0.9)",
         borderRadius: "50%",
         ...style,
-        transform: `translate3d(${x}px, ${y}px, ${z}px)`                 
+        transform: `translate3d(${x}px, ${y}px, ${z}px)`,
+        "transform-style": "preserve-3d"
       },
       children: [
         h(ScopeIcon, { color: "rgba(100,100,255, 1)", text: "P2P NET", 
@@ -86,6 +88,7 @@
         h("div", {
           style: { 
             position: "absolute", 
+            "transform-style": "preserve-3d",
             right: "47%", 
             bottom: "55%" 
           }, children 
@@ -109,7 +112,8 @@
         borderRadius: "50%",
         border: "1px solid #999",
         ...style,
-        transform: `translate3d(${x}px, ${y}px, ${z}px)`
+        transform: `translate3d(${x}px, ${y}px, ${z}px)`,
+        "transform-style": "preserve-3d"
       },
       children: children
     });
@@ -126,6 +130,7 @@
         background: "rgba(185,185,255,1)",
         borderRadius: "50%",
         transform: `translate3d(${x}px, ${y}px, ${z}px)`,
+        "transform-style": "preserve-3d",
         ...style
       }
     });
@@ -153,12 +158,14 @@
 
     const conElStyle = { 
         boxShadow: "inset 2px 2px 5px 0 rgba(0,0,255,0.3),0 2px 2px 0 rgba(240,240,255,1)", 
-        background: "rgba(220,220,220, 0.1)" 
+        background: "rgba(220,220,220, 0.1)",
+        "transform-style": "preserve-3d"
     }
 
     const myConElStyle = {
         background: "rgba(220,220,255, 0.4)",
         boxShadow: "unset",
+        "transform-style": "preserve-3d"
     } 
 
     return h("main", {
@@ -166,7 +173,8 @@
         width: "800px",
         height: "800px",
         border: "1px solid gray",
-        margin: "auto"
+        margin: "auto",
+        "transform-style": "preserve-3d"
       }
     }, [
       h("div", {
@@ -179,7 +187,8 @@
           "align-items": "center",
           "justify-items": "center",
           perspective: "650px",
-          transform: `translate(140px, -240px) rotateX(25deg)`
+          transform: `translate(140px, -240px) rotateX(25deg)`,
+        "transform-style": "preserve-3d"
         }
       }, [
         h(NetworkScope, { x: 100, y: -100, z: -290, children: [
@@ -277,6 +286,7 @@
                 z: pos.z * (1 + i * 0.1),
                 style: {
                   "border-radius": `${pos.r}%`,
+                  "transform-style": "preserve-3d",
                   "padding": "10px", 
                   "background-repeat": "no-repeat",
                   "background-position": "center",
@@ -291,7 +301,7 @@
     ])
   }
 
-  render(h(App, { name: "World" }), document.body)
+  render(h(App, { }), document.body)
 </script>
 
 </body>
