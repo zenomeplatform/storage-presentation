@@ -1,5 +1,7 @@
 ## Zenome Storage System
 
+@import "figures/figure-main.md"
+
 ### High-performance storage system for genomic data
 
 * Works in both distributed systems and private networks
@@ -97,6 +99,8 @@ When new data is being added to the Zenome Storage System, the user is asked to 
 Zenome Storage System enables the data owners (mostly patients) to sign up and only partially disclosure their genetic data. _This requires special configuration. The following are some possible use cases._
 
 > Genetic reports require some subset of the user's genetic data. So instead of uploading the whole data to the service provider, the user makes use of a special Zenome Storage System client. This piece of software may even be branded in the style of the service provider. Namely, the user registers the data in the system without even uploading it. After the user has chosen the desired report, the system asks him to allow access to the needed set of alleles. If the user agrees, this information is extracted from data and sent to the service provider. The user then gets its report based on the information provided.
+
+@import "figures/figure-main2.md"
 
 > The data owner wants to take part in genetic research by providing access to the subset of its data. The user makes use of a special Zenome Storage System client (preconfigured by a research group) and registers his data in it. Optionally, the user completes a questionnaire. After that, the researchers are enabled to make a query that executes on the data owner's computer. Only the results of the computation are sent back to the research team. The user specifies a degree to which data are used when data is registered in the system.
 
