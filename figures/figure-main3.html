@@ -6,9 +6,11 @@ function updateScaled()  {
         try {
             const scale = (element.clientWidth/800);
             element.style.transform = `scale(${scale})`;
+            element.style.height=`${element.clientWidth}px`
         } catch (error) {
             console.log({ error, element })
             element.style.transform = `scale(1.0)`;
+            element.style.height=`800px`
         }
     }
 }
